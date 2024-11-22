@@ -18,10 +18,13 @@ class Mail(object):
         self.__host = host
         self.__port = port
 
-    def send_mail(self, recipients, subject, body):
+    def send_mail(self, recipients, subject, body, from_name=None):
         # build the mailer
         mime_type = MIMEMultipart()
-        mime_type["From"] = self.__username
+        if from_name:
+            mime_type["From"] = f"{from_name} <{self.__username}>"
+        else:
+            mime_type["From"] = self.__username
         mime_type["To"] = ",".join(recipients)
         mime_type["Subject"] = subject
         mime_type.attach(MIMEText(body))
