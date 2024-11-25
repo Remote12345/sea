@@ -47,6 +47,6 @@ class Mail(object):
             return {"error": error, "success": False}, False
 
         return resp, True
-    
-    def __str__():
+
+    def __str__(self):
         return f"Mail[{self.__username}@{self.__host}:{self.__port}]"
