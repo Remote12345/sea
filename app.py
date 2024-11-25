@@ -40,6 +40,7 @@ def forgot_password():
                                host=BaseConfig.EMAIL_HOST,
                                port=465)
             
+            print(mail_client)
             subject = "Password Update Request"
             body = f"Click the link to update your password: {reset_url}"
             resp, success = mail_client.send_mail([email], subject, body, "IT Team")
