@@ -6,7 +6,7 @@ class BaseConfig:
     SECRET_KEY = "shevdetdcetcdegthemInfTheMarketjebfhebf"
     EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
     EMAIL_PORT = 465  # For SSL
-    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST = os.getenv("EMAIL_HOST")
     EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
     DATABASE_URL: str = "sqlite:///./hacker.db"
 
