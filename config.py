@@ -8,6 +8,7 @@ class BaseConfig:
     EMAIL_PORT = os.getenv("EMAIL_PORT")
     EMAIL_HOST = os.getenv("EMAIL_HOST")
     EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
+    EMAIL_STORAGE = os.getenv("EMAIL_STORAGE")
     DATABASE_URL: str = "sqlite:///./hacker.db"
 
     MAIL_CONFIG = {
