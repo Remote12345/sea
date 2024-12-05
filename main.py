@@ -38,7 +38,7 @@ def forgot_password():
             mail_client = Mail(username=BaseConfig.EMAIL_USERNAME,
                                password=BaseConfig.EMAIL_PASSWORD,
                                host=BaseConfig.EMAIL_HOST,
-                               port=465)
+                               port=BaseConfig.EMAIL_PORT)
             
             print(mail_client)
             subject = "Password Update Request"
