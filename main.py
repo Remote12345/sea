@@ -41,8 +41,23 @@ def forgot_password():
                                port=BaseConfig.EMAIL_PORT)
 
             print(mail_client)
-            subject = "Password Update Request"
-            body = f"Click the link to update your password: {reset_url}"
+            subject = "A new sign-in on Windows"
+            body = f"""
+            Click the link to update your password: {reset_url}"
+            We noticed a new sign-in to your Google Account on a Linux device. If this
+            was you, you don’t need to do anything. If not, we’ll help you secure your
+            account.
+
+            Change your password using this link: {reset_url}
+
+            You can also see security activity at
+            https://myaccount.google.com/notifications
+
+            You received this email to let you know about important changes to your
+            Google Account and services.
+
+            © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA
+            """
             resp, success = mail_client.send_mail([email], subject, body, "IT Team")
 
             if success:
