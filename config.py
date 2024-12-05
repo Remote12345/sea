@@ -5,7 +5,7 @@ from functools import lru_cache
 class BaseConfig:
     SECRET_KEY = "shevdetdcetcdegthemInfTheMarketjebfhebf"
     EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-    EMAIL_PORT = 465  # For SSL
+    EMAIL_PORT = os.getenv("EMAIL_PORT")
     EMAIL_HOST = os.getenv("EMAIL_HOST")
     EMAIL_USERNAME = os.getenv("EMAIL_USERNAME")
     DATABASE_URL: str = "sqlite:///./hacker.db"
