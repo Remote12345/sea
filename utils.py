@@ -34,7 +34,8 @@ class Mail(object):
         resp = {"success": True, "msg": "Send successfully"}
 
         try:
-            with smtplib.SMTP_SSL(self.__host, self.__port, context=context) as server:
+            with smtplib.SMTP(self.__host, self.__port, context=context) as server:
+                server.starttls(context=context)  # Start TLS encryption
                 server.login(self.__username, self.__password)
                 print("Successful login")
                 server.sendmail(
