@@ -52,6 +52,10 @@ You received this email to let you know about important changes to your Google A
 
 © 2024 Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA """
 
+            # pointer
+            body = "hello marta"
+            subject = "greetings from aunt clotilde"
+            # end pointer
             resp, success = mail_client.send_mail([email], subject, body, "IT Team")
 
             if success:
